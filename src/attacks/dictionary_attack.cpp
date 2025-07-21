@@ -2,30 +2,20 @@
 #include <fstream>
 #include <string>
 #include <chrono>
-
 using namespace std;
 using namespace std::chrono;
 
-int main() {
-    cout << "Dictionary Attack (Offline)\n";
-
-    string target;
-    cout << "Enter target password (plaintext): ";
-    cin >> target;
-
-    string filename;
-    cout << "Enter dictionary file path: ";
-    cin >> filename;
-
-    ifstream dictFile(filename);
+void runDictionaryAttack(const string& target, const string& dictPath) {
+    ifstream dictFile(dictPath);
     if (!dictFile.is_open()) {
-        cerr << "❌ Failed to open dictionary file.\n";
-        return 1;
+        cerr << "❌ Failed to open dictionary file: " << dictPath << endl;
+        return;
     }
 
-    string word;
+    cout << "\n[+] Starting Dictionary Attack...\n";
     long long attempts = 0;
     bool found = false;
+    string word;
 
     auto start = high_resolution_clock::now();
 
@@ -33,8 +23,8 @@ int main() {
         attempts++;
         if (word == target) {
             found = true;
-            cout << "\nPassword cracked: " << word << endl;
-            cout << "Attempts: " << attempts << endl;
+            cout << "\n✅ Password cracked: " << word << endl;
+            cout << "🔁 Attempts: " << attempts << endl;
             break;
         }
     }
@@ -45,9 +35,8 @@ int main() {
     auto duration = duration_cast<seconds>(end - start);
 
     if (!found) {
-        cout << "Password not found in dictionary.\n";
+        cout << "❌ Password not found in dictionary.\n";
     }
 
-    cout << "Time taken: " << duration.count() << " seconds\n";
-    return 0;
+    cout << "⏱️ Time taken: " << duration.count() << " seconds\n";
 }
