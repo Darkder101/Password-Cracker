@@ -18,7 +18,7 @@ unordered_map<string, string> parseArgs(int argc, char *argv[]) {
     return args;
 }
 
-int main(int argc, char *`argv[]) {
+int main(int argc, char *argv[]) {
     cout << "Password Cracker Tool - CLI Version\n";
 
     if (argc < 3) {
