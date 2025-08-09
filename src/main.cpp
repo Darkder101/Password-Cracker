@@ -25,8 +25,8 @@ int main(int argc, char *argv[]) {
         cerr << "Usage:\n";
         cerr << "  --attack [brute|dict] --target <password> [other flags]\n";
         cerr << "Examples:\n";
-        cerr << "  ./pwcrackr --attack brute --target cat --maxlen 4 --charset abc\n";
-        cerr << "  ./pwcrackr --attack dict --target cat --wordlist wordlists/test.txt\n";
+        cerr << "  ./pwcracker --attack brute --target cat --maxlen 4 --charset abc\n";
+        cerr << "  ./pwcracker --attack dict --target cat --wordlist wordlists/test.txt\n";
         return 1;
     }
 
@@ -56,7 +56,10 @@ int main(int argc, char *argv[]) {
             return 1;
         }
 
-    }else {
+        string wordlist = args["--wordlist"];
+        runDictionaryAttack(target, wordlist);
+
+    } else {
         cerr << "Error: Unknown attack type. Use 'brute' or 'dict'.\n";
         return 1;
     }
