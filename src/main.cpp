@@ -3,6 +3,10 @@
 #include <unordered_map>
 #include "attacks.hpp"
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 using namespace std;
 
 // Simple command-line argument parser
@@ -40,6 +44,11 @@ void printBanner(){
 
 
 int main(int argc, char *argv[]) {
+    
+    #ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+    #endif
+
     printBanner();
 
     if (argc < 3) {
