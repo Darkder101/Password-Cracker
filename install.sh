@@ -7,22 +7,22 @@ set -e
 GREEN="\e[32m"
 RESET="\e[0m"
 
-echo -e "${GREEN}[+] Installing dependencies...${RESET}"
+echo -e "${GREEN}[+] Checking dependencies...${RESET}"
 if command -v apt >/dev/null 2>&1; then
     sudo apt update
-    sudo apt install -y g++ libssl-dev
+    sudo apt install -y g++
 elif command -v brew >/dev/null 2>&1; then
-    brew install openssl
+    brew install gcc
 else
-    echo "Please install g++ and OpenSSL dev libraries manually."
+    echo "Please install g++ manually."
 fi
 
 echo -e "${GREEN}[+] Creating build directory...${RESET}"
 mkdir -p build
 
-echo -e "${GREEN}[+] Compiling source files...${RESET}"
-g++ src/main.cpp src/attacks/*.cpp src/utils/*.cpp \
-    -I include -o build/pwcracker -lssl -lcrypto
+echo -e "${GREEN}[+] Compiling source files (without OpenSSL)...${RESET}"
+g++ src/main.cpp src/attacks/*.cpp \
+    -I include -o build/pwcracker
 
 echo -e "${GREEN}[+] Build complete!${RESET}"
 echo -e "Run with: ./build/pwcracker --help"

@@ -11,9 +11,9 @@ if %errorlevel% neq 0 (
 echo [*] Creating build directory...
 if not exist build mkdir build
 
-echo [*] Compiling source files...
-g++ src\main.cpp src\attacks\*.cpp src\utils\*.cpp ^
-    -I include -o build\pwcracker.exe -lssl -lcrypto
+echo [*] Compiling source files (without OpenSSL)...
+g++ src\main.cpp src\attacks\*.cpp ^
+    -I include -o build\pwcracker.exe
 
 if %errorlevel% neq 0 (
     echo [!] Compilation failed.

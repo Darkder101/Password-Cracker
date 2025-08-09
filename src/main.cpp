@@ -56,18 +56,7 @@ int main(int argc, char *argv[]) {
             return 1;
         }
 
-    } else if (attackType == "hash") {
-        if (args.find("--hash-type") == args.end() || args.find("--wordlist") == args.end()) {
-            cerr << "Error: --hash-type and --wordlist are required for hash attack.\n";
-            return 1;
-        }
-
-        string hashType = args["--hash-type"];
-        string wordlist = args["--wordlist"];
-        runDictionaryAttack(target, wordlist);
-        runHashAttack(target, wordlist, hashType);
-
-    } else {
+    }else {
         cerr << "Error: Unknown attack type. Use 'brute' or 'dict'.\n";
         return 1;
     }
