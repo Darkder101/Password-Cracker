@@ -14,8 +14,8 @@ void recursiveBrute(string current, const string& charset, int maxLength, const 
         bruteForceAttempts++;
         if (current == target) {
             bruteForceFound = true;
-            cout << "\n✅ Password cracked: " << current << endl;
-            cout << "🔁 Attempts: " << bruteForceAttempts << endl;
+            cout << "\n[!] Password cracked: " << current << endl;
+            cout << "[!] Attempts: " << bruteForceAttempts << endl;
             return;
         }
     }
@@ -39,8 +39,8 @@ void runBruteForce(const string& target, int maxLength, const string& charset) {
     auto duration = duration_cast<seconds>(end - start);
 
     if (!bruteForceFound) {
-        cout << "❌ Password not found in given length and charset.\n";
+        cout << "[!] Password not found in given length and charset.\n";
     }
 
-    cout << "⏱️ Time taken: " << duration.count() << " seconds\n";
+    cout << "[!] Time taken: " << duration.count() << " seconds\n";
 }

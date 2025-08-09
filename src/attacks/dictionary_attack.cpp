@@ -8,7 +8,7 @@ using namespace std::chrono;
 void runDictionaryAttack(const string& target, const string& dictPath) {
     ifstream dictFile(dictPath);
     if (!dictFile.is_open()) {
-        cerr << "❌ Failed to open dictionary file: " << dictPath << endl;
+        cerr << "[!] Failed to open dictionary file: " << dictPath << endl;
         return;
     }
 
@@ -23,8 +23,8 @@ void runDictionaryAttack(const string& target, const string& dictPath) {
         attempts++;
         if (word == target) {
             found = true;
-            cout << "\n✅ Password cracked: " << word << endl;
-            cout << "🔁 Attempts: " << attempts << endl;
+            cout << "\n[!] Password cracked: " << word << endl;
+            cout << "[!] Attempts: " << attempts << endl;
             break;
         }
     }
@@ -38,5 +38,5 @@ void runDictionaryAttack(const string& target, const string& dictPath) {
         cout << "❌ Password not found in dictionary.\n";
     }
 
-    cout << "⏱️ Time taken: " << duration.count() << " seconds\n";
+    cout << "[!] Time taken: " << duration.count() << " seconds\n";
 }
